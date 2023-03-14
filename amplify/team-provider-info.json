@@ -13,7 +13,16 @@
     },
     "categories": {
       "function": {
-        "chatGPTLineChatBotFunction": {}
+        "chatGPTLineChatBotFunction": {
+          "deploymentBucketName": "amplify-chatgptlinechatbot-dev-151419-deployment",
+          "s3Key": "amplify-builds/chatGPTLineChatBotFunction-4d787a77794a48466a63-build.zip",
+          "secretsPathAmplifyAppId": "d1rmxghgu5m0i5",
+          "baseSecretPath": "/amplify/d1rmxghgu5m0i5/dev/AMPLIFY_chatGPTLineChatBotFunction_"
+        }
+      },
+      "api": {
+        "chatGPTLineChatBotRestApi": {},
+        "chatGPTLineChatBotGraphQLApi": {}
       }
     }
   }
