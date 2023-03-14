@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-chatgptlinechatbot-dev-151419-authRole",
+      "UnauthRoleArn": "arn:aws:iam::179333317237:role/amplify-chatgptlinechatbot-dev-151419-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::179333317237:role/amplify-chatgptlinechatbot-dev-151419-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-chatgptlinechatbot-dev-151419-deployment",
+      "UnauthRoleName": "amplify-chatgptlinechatbot-dev-151419-unauthRole",
+      "StackName": "amplify-chatgptlinechatbot-dev-151419",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:179333317237:stack/amplify-chatgptlinechatbot-dev-151419/759b31f0-c22f-11ed-b098-0a088792f14d",
+      "AmplifyAppId": "d1rmxghgu5m0i5"
+    },
+    "categories": {
+      "function": {
+        "chatGPTLineChatBotFunction": {}
+      }
+    }
+  }
+}

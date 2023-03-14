@@ -1,0 +1,8 @@
+type Messages @model {
+  id: ID!
+  lineUserId: String! @index(name: "byLineUserId", sortKeyFields: ["createdAt"])
+  content: String!
+  role: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
