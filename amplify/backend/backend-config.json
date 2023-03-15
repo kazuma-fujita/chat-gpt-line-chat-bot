@@ -49,6 +49,14 @@
         }
       ]
     },
+    "AMPLIFY_function_chatGPTLineChatBotFunction_dbTableNamePostfix": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "chatGPTLineChatBotFunction"
+        }
+      ]
+    },
     "AMPLIFY_function_chatGPTLineChatBotFunction_deploymentBucketName": {
       "usedBy": [
         {

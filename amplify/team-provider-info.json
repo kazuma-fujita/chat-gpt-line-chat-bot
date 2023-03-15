@@ -15,14 +15,43 @@
       "function": {
         "chatGPTLineChatBotFunction": {
           "deploymentBucketName": "amplify-chatgptlinechatbot-dev-151419-deployment",
-          "s3Key": "amplify-builds/chatGPTLineChatBotFunction-4d787a77794a48466a63-build.zip",
+          "s3Key": "amplify-builds/chatGPTLineChatBotFunction-52585365595a6a747946-build.zip",
           "secretsPathAmplifyAppId": "d1rmxghgu5m0i5",
-          "baseSecretPath": "/amplify/d1rmxghgu5m0i5/dev/AMPLIFY_chatGPTLineChatBotFunction_"
+          "baseSecretPath": "/amplify/d1rmxghgu5m0i5/dev/AMPLIFY_chatGPTLineChatBotFunction_",
+          "dbTableNamePostfix": "-k4rotn22tnah5a6hchqyxgllue-dev"
         }
       },
       "api": {
         "chatGPTLineChatBotRestApi": {},
         "chatGPTLineChatBotGraphQLApi": {}
+      }
+    }
+  },
+  "prod": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-chatgptlinechatbot-prod-111159-authRole",
+      "UnauthRoleArn": "arn:aws:iam::179333317237:role/amplify-chatgptlinechatbot-prod-111159-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::179333317237:role/amplify-chatgptlinechatbot-prod-111159-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-chatgptlinechatbot-prod-111159-deployment",
+      "UnauthRoleName": "amplify-chatgptlinechatbot-prod-111159-unauthRole",
+      "StackName": "amplify-chatgptlinechatbot-prod-111159",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:179333317237:stack/amplify-chatgptlinechatbot-prod-111159/c4f58cd0-c2d6-11ed-bd4a-0e95fc964237",
+      "AmplifyAppId": "d1rmxghgu5m0i5"
+    },
+    "categories": {
+      "function": {
+        "chatGPTLineChatBotFunction": {
+          "deploymentBucketName": "amplify-chatgptlinechatbot-prod-111159-deployment",
+          "s3Key": "amplify-builds/chatGPTLineChatBotFunction-52585365595a6a747946-build.zip",
+          "secretsPathAmplifyAppId": "d1rmxghgu5m0i5",
+          "baseSecretPath": "/amplify/d1rmxghgu5m0i5/prod/AMPLIFY_chatGPTLineChatBotFunction_",
+          "dbTableNamePostfix": "-wivm3ilwengjvjvfbrvxrbzete-prod"
+        }
+      },
+      "api": {
+        "chatGPTLineChatBotGraphQLApi": {},
+        "chatGPTLineChatBotRestApi": {}
       }
     }
   }
