@@ -1,4 +1,3 @@
-# import asyncio
 import openai
 import const
 
@@ -9,7 +8,8 @@ GPT3_MODEL = 'gpt-3.5-turbo'
 MAX_TOKENS = 1024
 
 # Create a new dict list of a system
-SYSTEM_PROMPTS = [{'role': 'system', 'content': '敬語を使うのをやめてください。友達のようにタメ口で話してください。また、絵文字をたくさん使って話してください。'}]
+# SYSTEM_PROMPTS = [{'role': 'system', 'content': '敬語を使うのをやめてください。友達のようにタメ口で話してください。また、絵文字をたくさん使って話してください。'}]
+SYSTEM_PROMPTS = [{'role': 'system', 'content': 'Please stop using polite language. Talk to me in a friendly way like a friend. Also, use a lot of emojis when you talk.'}]
 
 
 def completions(history_prompts):

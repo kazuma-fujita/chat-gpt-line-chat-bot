@@ -15,7 +15,7 @@
       "function": {
         "chatGPTLineChatBotFunction": {
           "deploymentBucketName": "amplify-chatgptlinechatbot-dev-151419-deployment",
-          "s3Key": "amplify-builds/chatGPTLineChatBotFunction-52585365595a6a747946-build.zip",
+          "s3Key": "amplify-builds/chatGPTLineChatBotFunction-3855787a5455736d7150-build.zip",
           "secretsPathAmplifyAppId": "d1rmxghgu5m0i5",
           "baseSecretPath": "/amplify/d1rmxghgu5m0i5/dev/AMPLIFY_chatGPTLineChatBotFunction_",
           "dbTableNamePostfix": "-k4rotn22tnah5a6hchqyxgllue-dev"
