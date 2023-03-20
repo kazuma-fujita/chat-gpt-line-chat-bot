@@ -15,7 +15,7 @@
       "function": {
         "chatGPTLineChatBotFunction": {
           "deploymentBucketName": "amplify-chatgptlinechatbot-dev-151419-deployment",
-          "s3Key": "amplify-builds/chatGPTLineChatBotFunction-3855787a5455736d7150-build.zip",
+          "s3Key": "amplify-builds/chatGPTLineChatBotFunction-364b335a587653304a7a-build.zip",
           "secretsPathAmplifyAppId": "d1rmxghgu5m0i5",
           "baseSecretPath": "/amplify/d1rmxghgu5m0i5/dev/AMPLIFY_chatGPTLineChatBotFunction_",
           "dbTableNamePostfix": "-k4rotn22tnah5a6hchqyxgllue-dev"
@@ -47,6 +47,34 @@
           "secretsPathAmplifyAppId": "d1rmxghgu5m0i5",
           "baseSecretPath": "/amplify/d1rmxghgu5m0i5/prod/AMPLIFY_chatGPTLineChatBotFunction_",
           "dbTableNamePostfix": "-wivm3ilwengjvjvfbrvxrbzete-prod"
+        }
+      },
+      "api": {
+        "chatGPTLineChatBotGraphQLApi": {},
+        "chatGPTLineChatBotRestApi": {}
+      }
+    }
+  },
+  "turbo": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-chatgptlinechatbot-turbo-140208-authRole",
+      "UnauthRoleArn": "arn:aws:iam::179333317237:role/amplify-chatgptlinechatbot-turbo-140208-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::179333317237:role/amplify-chatgptlinechatbot-turbo-140208-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-chatgptlinechatbot-turbo-140208-deployment",
+      "UnauthRoleName": "amplify-chatgptlinechatbot-turbo-140208-unauthRole",
+      "StackName": "amplify-chatgptlinechatbot-turbo-140208",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:179333317237:stack/amplify-chatgptlinechatbot-turbo-140208/5dd09950-c6dc-11ed-906f-0a1c087a86ef",
+      "AmplifyAppId": "d1rmxghgu5m0i5"
+    },
+    "categories": {
+      "function": {
+        "chatGPTLineChatBotFunction": {
+          "deploymentBucketName": "amplify-chatgptlinechatbot-turbo-140208-deployment",
+          "s3Key": "amplify-builds/chatGPTLineChatBotFunction-2b353864364f5044466d-build.zip",
+          "secretsPathAmplifyAppId": "d1rmxghgu5m0i5",
+          "baseSecretPath": "/amplify/d1rmxghgu5m0i5/turbo/AMPLIFY_chatGPTLineChatBotFunction_",
+          "dbTableNamePostfix": "-o2l6sw52hfh2rk5rbvykklwspe-turbo"
         }
       },
       "api": {

@@ -7,10 +7,6 @@
   ],
   "environmentVariableList": [
     {
-      "cloudFormationParameterName": "dbTableNamePostfix",
-      "environmentVariableName": "DB_TABLE_NAME_POSTFIX"
-    },
-    {
       "cloudFormationParameterName": "baseSecretPath",
       "environmentVariableName": "BASE_SECRET_PATH"
     },

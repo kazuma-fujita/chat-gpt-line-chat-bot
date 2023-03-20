@@ -19,10 +19,10 @@
     "secretsPathAmplifyAppId": {
       "Type": "String"
     },
-    "dbTableNamePostfix": {
+    "baseSecretPath": {
       "Type": "String"
     },
-    "baseSecretPath": {
+    "dbTableNamePostfix": {
       "Type": "String"
     }
   },
@@ -145,11 +145,11 @@
                 ]
               ]
             },
-            "DB_TABLE_NAME_POSTFIX": {
-              "Ref": "dbTableNamePostfix"
-            },
             "BASE_SECRET_PATH": {
               "Ref": "baseSecretPath"
+            },
+            "DB_TABLE_NAME_POSTFIX": {
+              "Ref": "dbTableNamePostfix"
             }
           }
         },
