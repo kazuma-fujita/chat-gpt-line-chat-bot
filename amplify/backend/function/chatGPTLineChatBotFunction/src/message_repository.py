@@ -6,7 +6,7 @@ import chatgpt_api
 import db_accessor
 import message_repository
 
-QUERY_LIMIT = 5
+QUERY_LIMIT = 10
 
 
 def _fetch_chat_histories_by_line_user_id(line_user_id, prompt_text):

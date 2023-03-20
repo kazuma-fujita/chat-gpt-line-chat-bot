@@ -2,7 +2,8 @@ import openai
 import const
 
 # Model name
-GPT3_MODEL = 'gpt-3.5-turbo'
+# GPT3_MODEL = 'gpt-3.5-turbo'
+GPT_MODEL = 'gpt-4'
 
 # Maximum number of tokens to generate
 MAX_TOKENS = 1024
@@ -19,7 +20,7 @@ def completions(history_prompts):
     try:
         openai.api_key = const.OPEN_AI_API_KEY
         response = openai.ChatCompletion.create(
-            model=GPT3_MODEL,
+            model=GPT_MODEL,
             messages=messages,
             max_tokens=MAX_TOKENS
         )
