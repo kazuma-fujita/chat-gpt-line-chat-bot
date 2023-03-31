@@ -38,6 +38,11 @@
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "chatGPTVoiceBotFunction": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "parameters": {
@@ -78,6 +83,38 @@
         {
           "category": "function",
           "resourceName": "chatGPTLineChatBotFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_chatGPTVoiceBotFunction_baseSecretPath": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "chatGPTVoiceBotFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_chatGPTVoiceBotFunction_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "chatGPTVoiceBotFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_chatGPTVoiceBotFunction_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "chatGPTVoiceBotFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_chatGPTVoiceBotFunction_secretsPathAmplifyAppId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "chatGPTVoiceBotFunction"
         }
       ]
     }

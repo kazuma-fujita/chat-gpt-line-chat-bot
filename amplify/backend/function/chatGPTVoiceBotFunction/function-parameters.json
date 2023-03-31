@@ -1,0 +1,12 @@
+{
+  "lambdaLayers": [],
+  "secretNames": [
+    "OPEN_AI_API_KEY"
+  ],
+  "environmentVariableList": [
+    {
+      "cloudFormationParameterName": "baseSecretPath",
+      "environmentVariableName": "BASE_SECRET_PATH"
+    }
+  ]
+}

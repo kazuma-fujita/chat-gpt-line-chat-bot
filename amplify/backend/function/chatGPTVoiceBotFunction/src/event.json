@@ -1,0 +1,66 @@
+{
+  "inputTranscript": "質問",
+  "sessionId": "179333317237333",
+  "bot": {
+    "aliasId": "TSTALIASID",
+    "aliasName": "TestBotAlias",
+    "name": "ChatGPTBot",
+    "version": "DRAFT",
+    "localeId": "ja_JP",
+    "id": "D0FUQ9W0K2"
+  },
+  "interpretations": [
+    {
+      "intent": {
+        "confirmationState": "None",
+        "name": "ChatGPT",
+        "state": "InProgress",
+        "slots": {
+          "empty_slot": null
+        }
+      },
+      "nluConfidence": 1
+    },
+    {
+      "intent": {
+        "confirmationState": "None",
+        "name": "FallbackIntent",
+        "state": "InProgress",
+        "slots": {}
+      }
+    }
+  ],
+  "proposedNextState": {
+    "intent": {
+      "confirmationState": "None",
+      "name": "ChatGPT",
+      "state": "InProgress",
+      "slots": {
+        "empty_slot": null
+      }
+    },
+    "dialogAction": {
+      "slotToElicit": "empty_slot",
+      "type": "ElicitSlot"
+    },
+    "prompt": {
+      "attempt": "Initial"
+    }
+  },
+  "responseContentType": "text/plain; charset=utf-8",
+  "messageVersion": "1.0",
+  "invocationSource": "DialogCodeHook",
+  "sessionState": {
+    "sessionAttributes": {},
+    "intent": {
+      "confirmationState": "None",
+      "name": "ChatGPT",
+      "state": "InProgress",
+      "slots": {
+        "empty_slot": null
+      }
+    },
+    "originatingRequestId": "07b28140-bd6b-40b7-b04b-d34a8910f93e"
+  },
+  "inputMode": "Text"
+}
