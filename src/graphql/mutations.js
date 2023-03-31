@@ -46,3 +46,48 @@ export const deleteMessages = /* GraphQL */ `
     }
   }
 `;
+export const createVoiceMessages = /* GraphQL */ `
+  mutation CreateVoiceMessages(
+    $input: CreateVoiceMessagesInput!
+    $condition: ModelVoiceMessagesConditionInput
+  ) {
+    createVoiceMessages(input: $input, condition: $condition) {
+      id
+      sessionId
+      content
+      role
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateVoiceMessages = /* GraphQL */ `
+  mutation UpdateVoiceMessages(
+    $input: UpdateVoiceMessagesInput!
+    $condition: ModelVoiceMessagesConditionInput
+  ) {
+    updateVoiceMessages(input: $input, condition: $condition) {
+      id
+      sessionId
+      content
+      role
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteVoiceMessages = /* GraphQL */ `
+  mutation DeleteVoiceMessages(
+    $input: DeleteVoiceMessagesInput!
+    $condition: ModelVoiceMessagesConditionInput
+  ) {
+    deleteVoiceMessages(input: $input, condition: $condition) {
+      id
+      sessionId
+      content
+      role
+      createdAt
+      updatedAt
+    }
+  }
+`;

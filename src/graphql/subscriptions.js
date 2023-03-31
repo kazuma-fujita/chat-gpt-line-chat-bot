@@ -37,3 +37,45 @@ export const onDeleteMessages = /* GraphQL */ `
     }
   }
 `;
+export const onCreateVoiceMessages = /* GraphQL */ `
+  subscription OnCreateVoiceMessages(
+    $filter: ModelSubscriptionVoiceMessagesFilterInput
+  ) {
+    onCreateVoiceMessages(filter: $filter) {
+      id
+      sessionId
+      content
+      role
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateVoiceMessages = /* GraphQL */ `
+  subscription OnUpdateVoiceMessages(
+    $filter: ModelSubscriptionVoiceMessagesFilterInput
+  ) {
+    onUpdateVoiceMessages(filter: $filter) {
+      id
+      sessionId
+      content
+      role
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteVoiceMessages = /* GraphQL */ `
+  subscription OnDeleteVoiceMessages(
+    $filter: ModelSubscriptionVoiceMessagesFilterInput
+  ) {
+    onDeleteVoiceMessages(filter: $filter) {
+      id
+      sessionId
+      content
+      role
+      createdAt
+      updatedAt
+    }
+  }
+`;

@@ -21,6 +21,9 @@
     },
     "baseSecretPath": {
       "Type": "String"
+    },
+    "dbTableNamePostfix": {
+      "Type": "String"
     }
   },
   "Conditions": {
@@ -100,6 +103,9 @@
             },
             "BASE_SECRET_PATH": {
               "Ref": "baseSecretPath"
+            },
+            "DB_TABLE_NAME_POSTFIX": {
+              "Ref": "dbTableNamePostfix"
             }
           }
         },

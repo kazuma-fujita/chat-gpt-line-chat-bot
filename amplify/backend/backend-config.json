@@ -94,6 +94,14 @@
         }
       ]
     },
+    "AMPLIFY_function_chatGPTVoiceBotFunction_dbTableNamePostfix": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "chatGPTVoiceBotFunction"
+        }
+      ]
+    },
     "AMPLIFY_function_chatGPTVoiceBotFunction_deploymentBucketName": {
       "usedBy": [
         {

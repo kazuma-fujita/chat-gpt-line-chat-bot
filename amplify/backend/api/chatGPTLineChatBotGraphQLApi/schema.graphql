@@ -6,3 +6,12 @@ type Messages @model {
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
 }
+
+type VoiceMessages @model {
+  id: ID!
+  sessionId: String! @index(name: "bySessionId", sortKeyFields: ["createdAt"])
+  content: String!
+  role: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}

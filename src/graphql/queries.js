@@ -32,6 +32,37 @@ export const listMessages = /* GraphQL */ `
     }
   }
 `;
+export const getVoiceMessages = /* GraphQL */ `
+  query GetVoiceMessages($id: ID!) {
+    getVoiceMessages(id: $id) {
+      id
+      sessionId
+      content
+      role
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listVoiceMessages = /* GraphQL */ `
+  query ListVoiceMessages(
+    $filter: ModelVoiceMessagesFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listVoiceMessages(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        sessionId
+        content
+        role
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
 export const messagesByLineUserIdAndCreatedAt = /* GraphQL */ `
   query MessagesByLineUserIdAndCreatedAt(
     $lineUserId: String!
@@ -52,6 +83,35 @@ export const messagesByLineUserIdAndCreatedAt = /* GraphQL */ `
       items {
         id
         lineUserId
+        content
+        role
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const voiceMessagesBySessionIdAndCreatedAt = /* GraphQL */ `
+  query VoiceMessagesBySessionIdAndCreatedAt(
+    $sessionId: String!
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelVoiceMessagesFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    voiceMessagesBySessionIdAndCreatedAt(
+      sessionId: $sessionId
+      createdAt: $createdAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        sessionId
         content
         role
         createdAt

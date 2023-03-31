@@ -1,20 +1,23 @@
 import json
 from decimal import Decimal
-import const
-import openai
+# import const
+# import openai
+import message_repository
 
-openai.api_key = const.OPEN_AI_API_KEY
 
+# openai.api_key = const.OPEN_AI_API_KEY
+
+INTENT_NAME = 'ChatGPT'
+
+SLOT_NAME = 'empty_slot'
 
 SLOT_DUMMY = {
-    "question_slot": {
+    SLOT_NAME: {
         "shape": "Scalar",
         "value": {
-            "originalValue": "ダミー",
-            "resolvedValues": [
-                "ダミー"
-            ],
-            "interpretedValue": "ダミー"
+            "originalValue": "dummy",
+            "resolvedValues": ["dummy"],
+            "interpretedValue": "dummy"
         }
     }
 }
@@ -73,47 +76,45 @@ def close(fulfillment_state, message_content, intent_name, slots):
     }
 
 
-def get_openai_response(input_text):
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "user", "content": input_text},
-        ]
-    )
-    print("Received response:" + json.dumps(response,default=decimal_to_int, ensure_ascii=False))
-    return response["choices"][0]["message"]["content"].replace('\n', '')
+# def get_openai_response(input_text):
+#     response = openai.ChatCompletion.create(
+#         model="gpt-3.5-turbo",
+#         messages=[
+#             {"role": "user", "content": input_text},
+#         ]
+#     )
+#     print("Received response:" + json.dumps(response, default=decimal_to_int, ensure_ascii=False))
+#     return response["choices"][0]["message"]["content"].replace('\n', '')
 
 
-def ChatGPT_intent(event):
-    print("Received event:" + json.dumps(event, default=decimal_to_int, ensure_ascii=False))
+def chatGPT_intent(event):
     intent_name = event['sessionState']['intent']['name']
     slots = event['sessionState']['intent']['slots']
     input_text = event['inputTranscript']
+    session_id = event['sessionId']
 
-    if slots['question_slot'] is None:
-        return elicit_slot('question_slot', intent_name, SLOT_DUMMY)
+    if slots[SLOT_NAME] is None:
+        return elicit_slot(SLOT_NAME, intent_name, SLOT_DUMMY)
 
-    confirmation_status = event['sessionState']['intent']['confirmationState']
+    # confirmation_status = event['sessionState']['intent']['confirmationState']
 
-    if confirmation_status == "Confirmed":
-        return close("Fulfilled", 'それでは、電話を切ります', intent_name, slots)
+    # if confirmation_status == "Confirmed":
+    #     return close("Fulfilled", 'それでは、電話を切ります', intent_name, slots)
 
-    elif confirmation_status == "Denied":
-        return close("Fulfilled", 'お力になれず、申し訳ありません。電話を切ります', intent_name, slots)
+    # elif confirmation_status == "Denied":
+    #     return close("Fulfilled", 'お力になれず、申し訳ありません。電話を切ります', intent_name, slots)
 
-    # confirmation_status == "None"
-    response_text = get_openai_response(input_text)
-    print("Received response_text:" + response_text)
+    completed_text = message_repository.create_completed_text(session_id, input_text)
+    # response_text = get_openai_response(input_text)
+    print("Received response_text:" + completed_text)
 
-    return confirm_intent(
-        f'それでは、回答します。{response_text}。以上が回答になります。回答に納得したかたは、はい、とお伝え下さい。納得いかない場合、いいえ、とお伝え下さい',
-        intent_name, slots)
+    return confirm_intent(completed_text, intent_name, slots)
 
 
-def lambda_handler(event, context):
+def handler(event, context):
     print("Received event:" + json.dumps(event, default=decimal_to_int, ensure_ascii=False))
 
     intent_name = event['sessionState']['intent']['name']
 
-    if intent_name == 'chatgpt':
-        return ChatGPT_intent(event)
+    if intent_name == INTENT_NAME:
+        return chatGPT_intent(event)
