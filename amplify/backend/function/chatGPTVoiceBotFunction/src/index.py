@@ -1,11 +1,5 @@
-import json
-from decimal import Decimal
-# import const
-# import openai
 import message_repository
 
-
-# openai.api_key = const.OPEN_AI_API_KEY
 
 INTENT_NAME = 'ChatGPT'
 
@@ -13,19 +7,14 @@ SLOT_NAME = 'empty_slot'
 
 SLOT_DUMMY = {
     SLOT_NAME: {
-        "shape": "Scalar",
-        "value": {
-            "originalValue": "dummy",
-            "resolvedValues": ["dummy"],
-            "interpretedValue": "dummy"
+        'shape': 'Scalar',
+        'value': {
+            'originalValue': 'dummy',
+            'resolvedValues': ['dummy'],
+            'interpretedValue': 'dummy'
         }
     }
 }
-
-
-def decimal_to_int(obj):
-    if isinstance(obj, Decimal):
-        return int(obj)
 
 
 def elicit_slot(slot_to_elicit, intent_name, slots):
@@ -63,7 +52,7 @@ def confirm_intent(message_content, intent_name, slots):
 def close(fulfillment_state, message_content, intent_name, slots):
     return {
         'messages': [{'contentType': 'PlainText', 'content': message_content}],
-        "sessionState": {
+        'sessionState': {
             'dialogAction': {
                 'type': 'Close',
             },
@@ -76,17 +65,6 @@ def close(fulfillment_state, message_content, intent_name, slots):
     }
 
 
-# def get_openai_response(input_text):
-#     response = openai.ChatCompletion.create(
-#         model="gpt-3.5-turbo",
-#         messages=[
-#             {"role": "user", "content": input_text},
-#         ]
-#     )
-#     print("Received response:" + json.dumps(response, default=decimal_to_int, ensure_ascii=False))
-#     return response["choices"][0]["message"]["content"].replace('\n', '')
-
-
 def chatGPT_intent(event):
     intent_name = event['sessionState']['intent']['name']
     slots = event['sessionState']['intent']['slots']
@@ -96,24 +74,17 @@ def chatGPT_intent(event):
     if slots[SLOT_NAME] is None:
         return elicit_slot(SLOT_NAME, intent_name, SLOT_DUMMY)
 
-    # confirmation_status = event['sessionState']['intent']['confirmationState']
-
-    # if confirmation_status == "Confirmed":
-    #     return close("Fulfilled", 'それでは、電話を切ります', intent_name, slots)
-
-    # elif confirmation_status == "Denied":
-    #     return close("Fulfilled", 'お力になれず、申し訳ありません。電話を切ります', intent_name, slots)
+    elif input_text == '終了':
+        return close('Fulfilled', 'ご利用ありがとうございました。またのご利用お待ちしております。', intent_name, slots)
 
     completed_text = message_repository.create_completed_text(session_id, input_text)
-    # response_text = get_openai_response(input_text)
-    print("Received response_text:" + completed_text)
+    print(f'Received input_text:{input_text}')
+    print(f'Received completed_text:{completed_text}')
 
     return confirm_intent(completed_text, intent_name, slots)
 
 
 def handler(event, context):
-    print("Received event:" + json.dumps(event, default=decimal_to_int, ensure_ascii=False))
-
     intent_name = event['sessionState']['intent']['name']
 
     if intent_name == INTENT_NAME:

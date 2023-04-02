@@ -23,7 +23,7 @@
         "chatGPTVoiceBotFunction": {
           "secretsPathAmplifyAppId": "d1rmxghgu5m0i5",
           "deploymentBucketName": "amplify-chatgptlinechatbot-dev-151419-deployment",
-          "s3Key": "amplify-builds/chatGPTVoiceBotFunction-6f326175424452626d6f-build.zip",
+          "s3Key": "amplify-builds/chatGPTVoiceBotFunction-445756624c4f714f6870-build.zip",
           "baseSecretPath": "/amplify/d1rmxghgu5m0i5/dev/AMPLIFY_chatGPTVoiceBotFunction_",
           "dbTableNamePostfix": "-k4rotn22tnah5a6hchqyxgllue-dev"
         }
