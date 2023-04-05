@@ -15,7 +15,7 @@
       "function": {
         "chatGPTLineChatBotFunction": {
           "deploymentBucketName": "amplify-chatgptlinechatbot-dev-151419-deployment",
-          "s3Key": "amplify-builds/chatGPTLineChatBotFunction-5a6e4e6f704f6e514e44-build.zip",
+          "s3Key": "amplify-builds/chatGPTLineChatBotFunction-514b62392b36482b734a-build.zip",
           "secretsPathAmplifyAppId": "d1rmxghgu5m0i5",
           "baseSecretPath": "/amplify/d1rmxghgu5m0i5/dev/AMPLIFY_chatGPTLineChatBotFunction_",
           "dbTableNamePostfix": "-k4rotn22tnah5a6hchqyxgllue-dev"
@@ -23,9 +23,13 @@
         "chatGPTVoiceBotFunction": {
           "secretsPathAmplifyAppId": "d1rmxghgu5m0i5",
           "deploymentBucketName": "amplify-chatgptlinechatbot-dev-151419-deployment",
-          "s3Key": "amplify-builds/chatGPTVoiceBotFunction-445756624c4f714f6870-build.zip",
+          "s3Key": "amplify-builds/chatGPTVoiceBotFunction-36366134446b7a39666b-build.zip",
           "baseSecretPath": "/amplify/d1rmxghgu5m0i5/dev/AMPLIFY_chatGPTVoiceBotFunction_",
           "dbTableNamePostfix": "-k4rotn22tnah5a6hchqyxgllue-dev"
+        },
+        "playgroundFunction": {
+          "deploymentBucketName": "amplify-chatgptlinechatbot-dev-151419-deployment",
+          "s3Key": "amplify-builds/playgroundFunction-74577a7151776f334a74-build.zip"
         }
       },
       "api": {

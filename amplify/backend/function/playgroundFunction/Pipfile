@@ -7,9 +7,6 @@ verify_ssl = true
 
 [packages]
 src = {editable = true, path = "./src"}
-boto3 = "*"
-line-bot-sdk = "*"
-openai = "*"
 tiktoken = "*"
 
 [requires]
