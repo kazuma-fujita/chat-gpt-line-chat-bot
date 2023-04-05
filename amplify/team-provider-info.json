@@ -15,7 +15,7 @@
       "function": {
         "chatGPTLineChatBotFunction": {
           "deploymentBucketName": "amplify-chatgptlinechatbot-dev-151419-deployment",
-          "s3Key": "amplify-builds/chatGPTLineChatBotFunction-514b62392b36482b734a-build.zip",
+          "s3Key": "amplify-builds/chatGPTLineChatBotFunction-53466e73553276465669-build.zip",
           "secretsPathAmplifyAppId": "d1rmxghgu5m0i5",
           "baseSecretPath": "/amplify/d1rmxghgu5m0i5/dev/AMPLIFY_chatGPTLineChatBotFunction_",
           "dbTableNamePostfix": "-k4rotn22tnah5a6hchqyxgllue-dev"
@@ -29,7 +29,7 @@
         },
         "playgroundFunction": {
           "deploymentBucketName": "amplify-chatgptlinechatbot-dev-151419-deployment",
-          "s3Key": "amplify-builds/playgroundFunction-74577a7151776f334a74-build.zip"
+          "s3Key": "amplify-builds/playgroundFunction-30566145706a377a594a-build.zip"
         }
       },
       "api": {
@@ -54,10 +54,21 @@
       "function": {
         "chatGPTLineChatBotFunction": {
           "deploymentBucketName": "amplify-chatgptlinechatbot-prod-111159-deployment",
-          "s3Key": "amplify-builds/chatGPTLineChatBotFunction-2b5932554c6457537163-build.zip",
+          "s3Key": "amplify-builds/chatGPTLineChatBotFunction-53466e73553276465669-build.zip",
           "secretsPathAmplifyAppId": "d1rmxghgu5m0i5",
           "baseSecretPath": "/amplify/d1rmxghgu5m0i5/prod/AMPLIFY_chatGPTLineChatBotFunction_",
           "dbTableNamePostfix": "-wivm3ilwengjvjvfbrvxrbzete-prod"
+        },
+        "chatGPTVoiceBotFunction": {
+          "secretsPathAmplifyAppId": "d1rmxghgu5m0i5",
+          "deploymentBucketName": "amplify-chatgptlinechatbot-prod-111159-deployment",
+          "s3Key": "amplify-builds/chatGPTVoiceBotFunction-36366134446b7a39666b-build.zip",
+          "baseSecretPath": "/amplify/d1rmxghgu5m0i5/prod/AMPLIFY_chatGPTVoiceBotFunction_",
+          "dbTableNamePostfix": "-wivm3ilwengjvjvfbrvxrbzete-prod"
+        },
+        "playgroundFunction": {
+          "deploymentBucketName": "amplify-chatgptlinechatbot-prod-111159-deployment",
+          "s3Key": "amplify-builds/playgroundFunction-30566145706a377a594a-build.zip"
         }
       },
       "api": {

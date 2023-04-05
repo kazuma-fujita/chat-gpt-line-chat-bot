@@ -1,6 +1,6 @@
 import const
 import openai
-import tiktoken
+# import tiktoken
 
 # Model name
 # GPT3_MODEL = 'gpt-3.5-turbo'
@@ -26,18 +26,17 @@ def completions(history_prompts) -> str:
             max_tokens=MAX_TOKENS
         )
         completed_text = response['choices'][0]['message']['content']
-        # token = num_tokens_from_string(completed_text, GPT_MODEL) + sum(map(lambda message: num_tokens_from_string(message['content'], GPT_MODEL), messages))
-        token = len(completed_text) + sum(map(lambda message: len(message['content']), messages))
-        print(f"token count:{token}")
+        join_message = completed_text + ' ' + ' '.join(map(lambda message: message['content'], messages))
+        # num_tokens = num_tokens_from_string(join_message, model_name)
+        print(f"string length:{len(join_message)}")
         return completed_text
     except Exception as e:
         # Raise the exception
         raise e
 
-
-def num_tokens_from_string(string: str, model_name: str) -> int:
-    """Returns the number of tokens in a text string."""
-    encoding = tiktoken.encoding_for_model(model_name)
-    num_tokens = len(encoding.encode(string))
-    return num_tokens
-
+# AWS Lambda環境だと tiktoken をインポート時に Unable to import module 'index': No module named 'regex._regex' エラー発生
+# def num_tokens_from_string(string: str, model_name: str) -> int:
+#     """Returns the number of tokens in a text string."""
+#     encoding = tiktoken.encoding_for_model(model_name)
+#     num_tokens = len(encoding.encode(string))
+#     return num_tokens
