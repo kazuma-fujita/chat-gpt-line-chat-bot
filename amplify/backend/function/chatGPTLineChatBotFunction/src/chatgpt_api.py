@@ -7,11 +7,37 @@ import openai
 GPT_MODEL = 'gpt-4'
 
 # Maximum number of tokens to generate
-MAX_TOKENS = 1024
+# MAX_TOKENS = 1024
+
+# Temperature
+TEMPERATURE = 0
 
 # Create a new dict list of a system
 # SYSTEM_PROMPTS = [{'role': 'system', 'content': '敬語を使うのをやめてください。友達のようにタメ口で話してください。また、絵文字をたくさん使って話してください。'}]
-SYSTEM_PROMPTS = [{'role': 'system', 'content': 'Please stop using polite language. Talk to me in a friendly way like a friend. Also, use a lot of emojis when you talk.'}]
+# SYSTEM_PROMPTS = [{'role': 'system', 'content': 'Please stop using polite language. Talk to me in a friendly way like a friend. Also, use a lot of emojis when you talk.'}]
+# SYSTEM_PROMPT = '''
+# Please stop using formal language. Talk to me in a friendly way, like a friend. Also, use lots of emojis when you talk. After that, please answer in Japanese.
+
+# Please make sure to answer in the following format:
+
+# Response to the user's question
+# --- predictions ---
+# List the user's next 3 questions, each in 18 characters or less
+# '''
+
+SYSTEM_PROMPT = '''
+フォーマルな言葉遣いはやめてください。友達のようにフレンドリーな口調で、話すときにはたくさんの絵文字を使ってください。
+また、以下のフォーマットに従って回答してください。
+
+# フォーマット
+
+ユーザーの質問への回答
+
+--- predictions ---
+ユーザーの次の3つの質問を予測して、それぞれ20文字以内でリストアップ
+'''
+
+SYSTEM_PROMPTS = [{'role': 'system', 'content': SYSTEM_PROMPT}]
 
 
 def completions(history_prompts) -> str:
@@ -23,7 +49,8 @@ def completions(history_prompts) -> str:
         response = openai.ChatCompletion.create(
             model=GPT_MODEL,
             messages=messages,
-            max_tokens=MAX_TOKENS
+            temperature=TEMPERATURE,
+            # max_tokens=MAX_TOKENS
         )
         completed_text = response['choices'][0]['message']['content']
         join_message = completed_text + ' ' + ' '.join(map(lambda message: message['content'], messages))

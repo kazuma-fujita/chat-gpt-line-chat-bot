@@ -5,7 +5,7 @@ from datetime import datetime
 import chatgpt_api
 import db_accessor
 
-QUERY_LIMIT = 10
+QUERY_LIMIT = 8
 
 
 def _fetch_chat_histories_by_session_id(session_id, prompt_text):

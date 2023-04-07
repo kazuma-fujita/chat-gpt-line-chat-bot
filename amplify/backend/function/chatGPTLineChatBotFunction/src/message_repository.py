@@ -5,7 +5,7 @@ from datetime import datetime
 import chatgpt_api
 import db_accessor
 
-QUERY_LIMIT = 14
+QUERY_LIMIT = 8
 
 
 def _fetch_chat_histories_by_line_user_id(line_user_id, prompt_text):
@@ -48,7 +48,7 @@ def _insert_message(line_user_id, role, prompt_text):
         raise e
 
 
-def create_completed_text(line_user_id, prompt_text):
+def create_completed_text(line_user_id, prompt_text) -> str:
     # Query messages by Line user ID.
     chat_histories = _fetch_chat_histories_by_line_user_id(line_user_id, prompt_text)
 
@@ -57,6 +57,17 @@ def create_completed_text(line_user_id, prompt_text):
 
     # Put a record of the user into the Messages table.
     _insert_message(line_user_id, 'user', prompt_text)
+
+    keyword = '--- predictions ---'
+    # If the keyword is not found in the text, add the prediction text.
+    if keyword not in completed_text:
+        prediction_text = '''
+        --- predictions ---
+        1. どんな質問に答えてくれますか？
+        2. ChatGPTでは何ができますか？
+        3. AIで遊べるゲームはありますか？
+        '''
+        completed_text = f'{completed_text}\n{prediction_text}'
 
     # Put a record of the assistant into the Messages table.
     _insert_message(line_user_id, 'assistant', completed_text)
