@@ -6,7 +6,7 @@ import chatgpt_api
 import db_accessor
 # import pytz
 
-QUERY_LIMIT = 8
+QUERY_LIMIT = 6
 
 # DBに保存、取得する値はUTCで良い為、JSTに変換する必要はない
 # JSTタイムゾーンを取得
