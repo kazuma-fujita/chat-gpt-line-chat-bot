@@ -8,20 +8,22 @@ QUERY_INDEX_NAME = 'byLineUserId'
 dynamodb = boto3.client('dynamodb')
 
 
-def query_by_line_user_id(line_user_id: str, limit: int) -> list:
+def query_by_line_user_id(line_user_id: str, date_prefix: str, limit: int) -> list:
     # Create a dictionary of query parameters
     query_params = {
         'TableName': TABLE_NAME,
         'IndexName': QUERY_INDEX_NAME,
         # Use a named parameter for the key condition expression
-        'KeyConditionExpression': '#lineUserId = :lineUserId',
-        # Define an expression attribute name for the hash key
+        'KeyConditionExpression': '#lineUserId = :lineUserId AND begins_with(#createdAt, :datePrefix)',
+        # Define an expression attribute name for the hash key and sort key
         'ExpressionAttributeNames': {
-            '#lineUserId': 'lineUserId'
+            '#lineUserId': 'lineUserId',
+            '#createdAt': 'createdAt'
         },
-        # Define an expression attribute value for the hash key
+        # Define an expression attribute value for the hash key and date prefix
         'ExpressionAttributeValues': {
-            ':lineUserId': {'S': line_user_id}
+            ':lineUserId': {'S': line_user_id},
+            ':datePrefix': {'S': date_prefix}
         },
         # Sort the results in descending order by sort key
         'ScanIndexForward': False,

@@ -22,13 +22,17 @@ def reply_message_for_line(reply_token, completed_text):
             # 改行で分割し、文字列の前後の空白と改行を削除
             predictions = map(lambda line: remove_ordinal_number(line.strip()), prediction_text.strip().split('\n'))
             # predications 配列内の要素の文字列が21文字以上の場合配列から削除
-            predictions = list(filter(lambda line: len(line) <= 20, predictions))
-            # クイックリプライアクションを作成
-            quick_reply_actions = map(lambda line: QuickReplyButton(action=MessageAction(label=line, text=line)), predictions)
-            # クイックリプライオブジェクトを作成
-            quick_reply = QuickReply(items=quick_reply_actions)
-            # テキストメッセージにクイックリプライを追加
-            message = TextSendMessage(text=assistant_answer, quick_reply=quick_reply)
+            predictions = list(filter(lambda line: len(line) <= 20 and line != "", predictions))
+            # predications が空だったら message に TextSendMessage を設定
+            if len(predictions) == 0:
+                message = TextSendMessage(text=assistant_answer)
+            else:
+                # クイックリプライアクションを作成
+                quick_reply_actions = map(lambda line: QuickReplyButton(action=MessageAction(label=line, text=line)), predictions)
+                # クイックリプライオブジェクトを作成
+                quick_reply = QuickReply(items=quick_reply_actions)
+                # テキストメッセージにクイックリプライを追加
+                message = TextSendMessage(text=assistant_answer, quick_reply=quick_reply)
         else:
             message = TextSendMessage(text=completed_text)
             print('The keyword is not found in the text.')
