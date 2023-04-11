@@ -25,7 +25,6 @@ def _fetch_chat_histories_by_line_user_id(line_user_id, prompt_text):
         if line_user_id is None:
             raise Exception('To query an element is none.')
 
-        print(f'formatted_date: {formatted_date}')
         # Query messages by Line user ID.
         db_results = db_accessor.query_by_line_user_id(line_user_id, formatted_date, QUERY_LIMIT)
 
@@ -76,9 +75,9 @@ def create_completed_text(line_user_id, prompt_text) -> str:
     if keyword not in completed_text:
         prediction_text = '''
         --- predictions ---
+        1. ChatGPTって何ですか？
         1. どんな質問に答えてくれますか？
         2. ChatGPTでは何ができますか？
-        3. AIで遊べるゲームはありますか？
         '''
         completed_text = f'{completed_text}\n{prediction_text}'
 

@@ -43,7 +43,7 @@ SYSTEM_PROMPTS = [{'role': 'system', 'content': SYSTEM_PROMPT}]
 def completions(history_prompts) -> str:
     messages = SYSTEM_PROMPTS + history_prompts
 
-    print(f"prompts:{messages}")
+    # print(f"prompts:{messages}")
     try:
         openai.api_key = const.OPEN_AI_API_KEY
         response = openai.ChatCompletion.create(
@@ -55,7 +55,8 @@ def completions(history_prompts) -> str:
         completed_text = response['choices'][0]['message']['content']
         join_message = completed_text + ' ' + ' '.join(map(lambda message: message['content'], messages))
         # num_tokens = num_tokens_from_string(join_message, model_name)
-        print(f"string length:{len(join_message)}")
+        print(f"completed_text:{completed_text}")
+        print(f"total length:{len(join_message)}")
         return completed_text
     except Exception as e:
         # Raise the exception
