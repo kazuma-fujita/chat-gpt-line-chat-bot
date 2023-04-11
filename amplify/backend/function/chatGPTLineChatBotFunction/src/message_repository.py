@@ -76,8 +76,8 @@ def create_completed_text(line_user_id, prompt_text) -> str:
         prediction_text = '''
         --- predictions ---
         1. ChatGPTって何ですか？
-        1. どんな質問に答えてくれますか？
         2. ChatGPTでは何ができますか？
+        3. どんな質問に答えてくれますか？
         '''
         completed_text = f'{completed_text}\n{prediction_text}'
 
