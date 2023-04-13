@@ -73,12 +73,11 @@ def create_completed_text(line_user_id, prompt_text) -> str:
     keyword = '--- predictions ---'
     # If the keyword is not found in the text, add the prediction text.
     if keyword not in completed_text:
-        prediction_text = '''
-        --- predictions ---
-        1. ChatGPTって何ですか？
-        2. ChatGPTでは何ができますか？
-        3. どんな質問に答えてくれますか？
-        '''
+        prediction_text = f'''{keyword}
+1. ChatGPTって何ですか？
+2. ChatGPTでは何ができますか？
+3. どんな質問に答えてくれますか？
+'''
         completed_text = f'{completed_text}\n{prediction_text}'
 
     # Put a record of the assistant into the Messages table.
