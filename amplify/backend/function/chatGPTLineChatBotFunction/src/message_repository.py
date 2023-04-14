@@ -1,5 +1,6 @@
 # import asyncio
 import uuid
+from typing import Dict, List, Tuple
 from datetime import datetime
 
 import chatgpt_api
@@ -20,7 +21,7 @@ now = datetime.now()
 formatted_date = now.strftime('%Y-%m-%d')
 
 
-def _fetch_chat_histories_by_line_user_id(line_user_id, prompt_text):
+def _fetch_chat_histories_by_line_user_id(line_user_id, prompt_text) -> List[Dict[str, str]]:
     try:
         if line_user_id is None:
             raise Exception('To query an element is none.')
@@ -40,7 +41,6 @@ def _fetch_chat_histories_by_line_user_id(line_user_id, prompt_text):
         return chat_histories + current_prompts
 
     except Exception as e:
-        # Raise the exception
         raise e
 
 
@@ -56,31 +56,20 @@ def _insert_message(line_user_id, role, prompt_text):
         db_accessor.put_message(partition_key, line_user_id, role, prompt_text, now)
 
     except Exception as e:
-        # Raise the exception
         raise e
 
 
-def create_completed_text(line_user_id, prompt_text) -> str:
+def create_completed_text(line_user_id, prompt_text) -> Tuple[str, List[str]]:
     # Query messages by Line user ID.
     chat_histories = _fetch_chat_histories_by_line_user_id(line_user_id, prompt_text)
 
     # Call the GPT3 API to get the completed text
-    completed_text = chatgpt_api.completions(chat_histories)
+    completed_text, assistant_answer, predictions = chatgpt_api.completions(chat_histories)
 
     # Put a record of the user into the Messages table.
     _insert_message(line_user_id, 'user', prompt_text)
 
-    keyword = '--- predictions ---'
-    # If the keyword is not found in the text, add the prediction text.
-    if keyword not in completed_text:
-        prediction_text = f'''{keyword}
-1. ChatGPTって何ですか？
-2. ChatGPTでは何ができますか？
-3. どんな質問に答えてくれますか？
-'''
-        completed_text = f'{completed_text}\n{prediction_text}'
-
     # Put a record of the assistant into the Messages table.
     _insert_message(line_user_id, 'assistant', completed_text)
 
-    return completed_text
+    return assistant_answer, predictions

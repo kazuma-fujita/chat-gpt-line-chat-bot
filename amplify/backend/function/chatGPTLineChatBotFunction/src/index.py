@@ -22,10 +22,10 @@ def handler(event, context):
 
         print(prompt_text.replace('\n', ''))
 
-        # Create the completed text by Chat-GPT 3.5 turbo
-        completed_text = message_repository.create_completed_text(line_user_id, prompt_text)
+        # Create the completed text by Chat-GPT API
+        assistant_answer, predictions = message_repository.create_completed_text(line_user_id, prompt_text)
         # Reply the message using the LineBotApi instance
-        line_api.reply_message_for_line(reply_token, completed_text)
+        line_api.reply_message_for_line(reply_token, assistant_answer, predictions)
 
     except Exception as e:
         # Log the error

@@ -1,70 +1,81 @@
 import const
 import openai
-# import tiktoken
+import re
+from typing import List, Tuple, Dict
 
 # Model name
-# GPT3_MODEL = 'gpt-3.5-turbo'
-GPT_MODEL = 'gpt-4'
-
-# Maximum number of tokens to generate
-# MAX_TOKENS = 1024
+GPT_MODEL = 'gpt-4'  # or gpt-3.5-turbo
 
 # Temperature
-TEMPERATURE = 0
+TEMPERATURE = 0.7
 
-# Create a new dict list of a system
-# SYSTEM_PROMPTS = [{'role': 'system', 'content': '敬語を使うのをやめてください。友達のようにタメ口で話してください。また、絵文字をたくさん使って話してください。'}]
-# SYSTEM_PROMPTS = [{'role': 'system', 'content': 'Please stop using polite language. Talk to me in a friendly way like a friend. Also, use a lot of emojis when you talk.'}]
-# SYSTEM_PROMPT = '''
-# Please stop using formal language. Talk to me in a friendly way, like a friend. Also, use lots of emojis when you talk. After that, please answer in Japanese.
+PREDICTION_KEYWORD = '### Predictions ###'
 
-# Please make sure to answer in the following format:
-
-# Response to the user's question
-# --- predictions ---
-# List the user's next 3 questions, each in 18 characters or less
-# '''
-
-SYSTEM_PROMPT = '''
-フォーマルな言葉遣いはやめてください。友達のようにフレンドリーな口調で、話すときにはたくさんの絵文字を使ってください。
+SYSTEM_PROMPT = f'''フォーマルな言葉遣いはやめてください。友達のようにフレンドリーな口調で、話すときにはたくさんの絵文字を使ってください。
 また、以下のフォーマットに従って回答してください。
 
 # フォーマット
 
 ユーザーの質問への回答
 
---- predictions ---
+{PREDICTION_KEYWORD}
 ユーザーの次の3つの質問を予測して、それぞれ20文字以内でリストアップ
+'''
+
+DEFAULT_PREDICTION_TEXT = f'''{PREDICTION_KEYWORD}
+1. ChatGPTって何ですか？
+2. ChatGPTでは何ができますか？
+3. どんな質問に答えてくれますか？
 '''
 
 SYSTEM_PROMPTS = [{'role': 'system', 'content': SYSTEM_PROMPT}]
 
 
-def completions(history_prompts) -> str:
+def _parse_completed_text(completed_text: str) -> Tuple[str, List[str]]:
+    # キーワードで分割。キーワードは含まない。第2引数は分割数。
+    completed_texts = completed_text.split(PREDICTION_KEYWORD, 1)
+    if len(completed_texts) < 2:
+        raise Exception('The keyword is not found in the text.')
+    # ユーザーに返却するテキストを取得。文字列の前後の空白と改行を削除
+    assistant_answer = completed_texts[0].strip()
+    # キーワード以降のテキストを取得
+    prediction_text = completed_texts[1]
+    # 改行で分割し、文字列の前後の空白と改行を削除
+    predictions = list(map(lambda line: _remove_ordinal_number(line.strip()), prediction_text.strip().split('\n')))
+    return assistant_answer, predictions
+
+
+# 文字列の先頭にある序数を削除する関数
+def _remove_ordinal_number(text: str) -> str:
+    # 正規表現で先頭の数字とピリオドを削除
+    return re.sub(r'^\d+\.\s*', '', text)
+
+
+def _print_total_length(completed_text, messages):
+    join_message = completed_text + ' ' + ' '.join(map(lambda message: message['content'], messages))
+    print(completed_text.replace('\n', ''))
+    print(f"total length:{len(join_message)}")
+
+
+def completions(history_prompts: List[Dict[str, str]]) -> Tuple[str, str, List[str]]:
     messages = SYSTEM_PROMPTS + history_prompts
 
-    # print(f"prompts:{messages}")
     try:
         openai.api_key = const.OPEN_AI_API_KEY
         response = openai.ChatCompletion.create(
             model=GPT_MODEL,
             messages=messages,
             temperature=TEMPERATURE,
-            # max_tokens=MAX_TOKENS
         )
         completed_text = response['choices'][0]['message']['content']
-        join_message = completed_text + ' ' + ' '.join(map(lambda message: message['content'], messages))
-        # num_tokens = num_tokens_from_string(join_message, model_name)
-        print(f"completed_text:{completed_text}")
-        print(f"total length:{len(join_message)}")
-        return completed_text
-    except Exception as e:
-        # Raise the exception
-        raise e
 
-# AWS Lambda環境だと tiktoken をインポート時に Unable to import module 'index': No module named 'regex._regex' エラー発生
-# def num_tokens_from_string(string: str, model_name: str) -> int:
-#     """Returns the number of tokens in a text string."""
-#     encoding = tiktoken.encoding_for_model(model_name)
-#     num_tokens = len(encoding.encode(string))
-#     return num_tokens
+        if PREDICTION_KEYWORD not in completed_text:
+            completed_text = f'{completed_text}\n{DEFAULT_PREDICTION_TEXT}'
+
+        _print_total_length(completed_text, messages)
+
+        assistant_answer, predictions = _parse_completed_text(completed_text)
+
+        return completed_text, assistant_answer, predictions
+    except Exception as e:
+        raise e
